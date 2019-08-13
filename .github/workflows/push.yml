@@ -1,0 +1,25 @@
+on: push
+name: Build and Push
+jobs:
+  dockerBuild:
+    name: Docker Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Docker Build
+      uses: actions/docker/cli@86ab5e854a74b50b7ed798a94d9b8ce175d8ba19
+      with:
+        args: build -t robertfreeman/builddemo .
+    - name: Docker Login
+      uses: actions/docker/login@86ab5e854a74b50b7ed798a94d9b8ce175d8ba19
+      env:
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+    - name: Docker Push
+      uses: actions/docker/cli@86ab5e854a74b50b7ed798a94d9b8ce175d8ba19
+      with:
+        args: push robertfreeman/builddemo
+    - name: Trivy Scanner
+      uses: actions/docker/cli@86ab5e854a74b50b7ed798a94d9b8ce175d8ba19
+      with:
+        args: run --rm knqyf263/trivy robertfreeman/builddemo
