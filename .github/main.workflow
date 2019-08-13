@@ -23,5 +23,5 @@ action "Docker Push" {
 action "Trivy Scanner" {
   uses = "actions/docker/cli@86ab5e854a74b50b7ed798a94d9b8ce175d8ba19"
   needs = ["Docker Push"]
-  args = "run --rm -v /root/.cache:/root/.cache/ knqyf263/trivy robertfreeman/builddemo"
+  args = "run --rm knqyf263/trivy robertfreeman/builddemo"
 }
