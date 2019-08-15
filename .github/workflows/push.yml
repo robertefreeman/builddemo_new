@@ -30,4 +30,4 @@ jobs:
         HOST: ${{ secrets.HOST }}
         USER: ${{ secrets.USER }}
       with:
-        args: docker service update --force build_web
+        args: docker pull robertfreeman/builddemo:latest && docker service update --force build_web
