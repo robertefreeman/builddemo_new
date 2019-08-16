@@ -9,7 +9,7 @@ redis = Redis(host='redis', port=6379)
 def hello():
     count = redis.incr('hits')
     hostname = socket.gethostname()
-    verbiage = "Hello Test ... its Robert's server!! I have been seen " + str(count) + " times, served by Countainer: " + hostname
+    verbiage = "Hello World ...!! I have been seen " + str(count) + " times, served by Countainer: " + hostname
     # return 'HELLO World! I have been seen {} times.\n'.format(count)
     return verbiage
 
