@@ -6,12 +6,16 @@ services:
     deploy:
             labels:
                 com.docker.ucp.mesh.http.8000: "external_route=http://build2.ucp.robert.dtcntr.net,internal_port=8000"
+    image: robertfreeman/builddemo
     ports:
       - 8000
+      - "80:8000"
     networks:
       - counter-backend
       - ucp-hrm
   
+
+
   redis:
     image: redis:alpine
     networks:
