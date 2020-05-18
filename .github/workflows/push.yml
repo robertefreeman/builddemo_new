@@ -8,6 +8,7 @@ jobs:
     name: Docker Build
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@master
     - uses: docker/build-push-action@v1
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
