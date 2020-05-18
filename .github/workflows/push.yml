@@ -4,11 +4,11 @@ on:
     - master
 name: Build and Push
 jobs:
-  dockerbuild2:
-    name: Docker Build
+  build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+    
     - uses: docker/build-push-action@v1
       with:
         username: ${{ secrets.DOCKER_USERNAME }}
@@ -17,6 +17,21 @@ jobs:
         tags: latest
         tag_with_ref: true
         tag_with_sha: true
+
+    - uses: azure/aks-set-context@v1
+      with:
+        creds: '${{ secrets.AZURE_CRED }}' # Azure credentials
+        resourceGroupName: 'girhub-demos'
+        clusterName: 'r0bk8s'
+        
+    - uses: Azure/k8s-deploy@v1
+      with:
+        manifests: |
+          manifests/deployment.yml
+          manifests/service.yml
+        images: |
+          docker.io/library/nginxdemos/hello
+        
 #  dockerBuild:
 #    name: Docker Build
 #    runs-on: ubuntu-latest
