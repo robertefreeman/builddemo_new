@@ -14,4 +14,4 @@ spec:
       - backend:
           serviceName: hello-service
           servicePort: 9376
-        path: (/|$)(.*)
+        path: /
