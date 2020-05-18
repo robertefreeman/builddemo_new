@@ -21,7 +21,7 @@ metadata:
     kubernetes.io/ingress.class: addon-http-application-routing
 spec:
   rules:
-  - host: party-clippy.<CLUSTER_SPECIFIC_DNS_ZONE>
+  - host: hello.9a17682bb7744978bf3a.southcentralus.aksapp.io
     http:
       paths:
       - backend:
