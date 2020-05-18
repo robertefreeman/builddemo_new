@@ -3,19 +3,19 @@ kind: Deployment
 metadata:
   name: nginx-deployment
   labels:
-    app: nginx
+    app: nginx-hello
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: nginx-hello
   template:
     metadata:
       labels:
-        app: nginx
+        app: nginx-hello
     spec:
       containers:
-      - name: nginx
+      - name: nginx-hello
         image: docker.io/library/nginxdemos/hello
         ports:
         - containerPort: 80
