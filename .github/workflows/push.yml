@@ -22,15 +22,3 @@ jobs:
       uses: actions/docker/cli@86ab5e854a74b50b7ed798a94d9b8ce175d8ba19
       with:
         args: push robertfreeman/builddemo
-    - name: Trivy Scanner
-      uses: actions/docker/cli@86ab5e854a74b50b7ed798a94d9b8ce175d8ba19
-      with:
-        args: run --rm knqyf263/trivy robertfreeman/builddemo
-    - name: Update Docker Service
-      uses: maddox/actions/ssh@master
-      env:
-        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-        HOST: ${{ secrets.HOST }}
-        USER: ${{ secrets.USER }}
-      with:
-        args: docker pull robertfreeman/builddemo:latest && docker service update --force --image robertfreeman/builddemo:latest build_web
