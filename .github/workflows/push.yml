@@ -30,7 +30,7 @@ jobs:
           manifests/deployment.yml
           manifests/service.yml
         images: |
-          docker.io/library/nginxdemos/hello
+          docker.io/nginxdemos/hello
         
 #  dockerBuild:
 #    name: Docker Build

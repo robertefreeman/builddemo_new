@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: nginx-hello
-        image: docker.io/library/nginxdemos/hello
+        image: docker.io/nginxdemos/hello
         ports:
         - containerPort: 80
